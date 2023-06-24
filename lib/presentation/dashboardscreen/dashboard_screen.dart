@@ -15,7 +15,7 @@ class DashBoardScreen extends StatefulWidget {
 class _DashBoardScreenState extends State<DashBoardScreen> {
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
       child: SingleChildScrollView(
         padding: EdgeInsets.all(defaultPadding),
         child: Column(
@@ -26,7 +26,18 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(flex: 5, child: MyFeilds()),
+                Expanded(
+                  flex: 5,
+                  child: Column(
+                    children: [
+                      MyFeilds(),
+                      SizedBox(
+                        height: defaultPadding,
+                      ),
+                      Container()
+                    ],
+                  ),
+                ),
                 SizedBox(width: defaultPadding),
                 Expanded(flex: 2, child: StorageDetails()),
               ],
