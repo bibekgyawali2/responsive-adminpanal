@@ -1,5 +1,6 @@
 import 'package:ecommerce_admin/constants.dart';
 import 'package:ecommerce_admin/models/MyFiles.dart';
+import 'package:ecommerce_admin/presentation/dashboardscreen/component/dialog.dart';
 import 'package:ecommerce_admin/presentation/dashboardscreen/component/file_info_cards.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,14 @@ class MyFeilds extends StatelessWidget {
                   vertical: defaultPadding,
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const ShippingAddressDialog();
+                  },
+                );
+              },
               icon: const Icon(Icons.add),
               label: const Text('Add Product'),
             ),
