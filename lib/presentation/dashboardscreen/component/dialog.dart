@@ -1,12 +1,11 @@
-import 'dart:io';
 import 'dart:typed_data';
-
+import 'package:ecommerce_admin/data/models/productmodel.dart';
+import 'package:uuid/uuid.dart';
+import 'package:ecommerce_admin/data/datasources/uploadproduct/upload_product.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../constants.dart';
 import '../../../utils/image_picker_phone.dart';
-import 'package:extended_image/extended_image.dart';
 
 class ShippingAddressDialog extends StatefulWidget {
   const ShippingAddressDialog({Key, key}) : super(key: key);
@@ -16,18 +15,17 @@ class ShippingAddressDialog extends StatefulWidget {
 }
 
 class _ShippingAddressDialogState extends State<ShippingAddressDialog> {
-  TextEditingController countryController = TextEditingController();
-  TextEditingController stateController = TextEditingController();
-  TextEditingController cityController = TextEditingController();
-  TextEditingController postalCodeController = TextEditingController();
+  TextEditingController pname = TextEditingController();
+  TextEditingController pprice = TextEditingController();
+  TextEditingController pdescription = TextEditingController();
+  TextEditingController pcatagory = TextEditingController();
+  TextEditingController psubcatagory = TextEditingController();
+  TextEditingController pquantity = TextEditingController();
+
   ImageProvider<Object>? pickedImage;
 
   @override
   void dispose() {
-    countryController.dispose();
-    stateController.dispose();
-    cityController.dispose();
-    postalCodeController.dispose();
     super.dispose();
   }
 
@@ -39,6 +37,7 @@ class _ShippingAddressDialogState extends State<ShippingAddressDialog> {
     });
   }
 
+  Uuid uuid = const Uuid();
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -77,7 +76,7 @@ class _ShippingAddressDialogState extends State<ShippingAddressDialog> {
                     }
                     return null;
                   },
-                  controller: countryController,
+                  controller: pname,
                   decoration: const InputDecoration(labelText: 'Name'),
                 ),
                 TextFormField(
@@ -87,7 +86,7 @@ class _ShippingAddressDialogState extends State<ShippingAddressDialog> {
                     }
                     return null;
                   },
-                  controller: stateController,
+                  controller: pdescription,
                   decoration: const InputDecoration(labelText: 'Description'),
                 ),
                 TextFormField(
@@ -97,7 +96,7 @@ class _ShippingAddressDialogState extends State<ShippingAddressDialog> {
                     }
                     return null;
                   },
-                  controller: cityController,
+                  controller: pprice,
                   decoration: const InputDecoration(labelText: 'Price'),
                 ),
                 TextFormField(
@@ -107,7 +106,7 @@ class _ShippingAddressDialogState extends State<ShippingAddressDialog> {
                     }
                     return null;
                   },
-                  controller: postalCodeController,
+                  controller: pcatagory,
                   decoration: const InputDecoration(labelText: 'Catagory'),
                 ),
                 TextFormField(
@@ -117,7 +116,7 @@ class _ShippingAddressDialogState extends State<ShippingAddressDialog> {
                     }
                     return null;
                   },
-                  controller: postalCodeController,
+                  controller: psubcatagory,
                   decoration: const InputDecoration(labelText: 'Sub Catagory'),
                 ),
                 TextFormField(
@@ -127,7 +126,7 @@ class _ShippingAddressDialogState extends State<ShippingAddressDialog> {
                     }
                     return null;
                   },
-                  controller: postalCodeController,
+                  controller: pquantity,
                   decoration: const InputDecoration(labelText: 'Quantity'),
                 ),
               ],
@@ -151,9 +150,20 @@ class _ShippingAddressDialogState extends State<ShippingAddressDialog> {
           child: const Text('Pick Image'),
         ),
         ElevatedButton(
-          onPressed: () {
+          onPressed: () async {
             if (formKey.currentState!.validate()) {
-              // Save form data
+              var url = await UploadProduct()
+                  .uploadImageToStorage(uuid.v1(), _image!);
+              Product productsModal = Product(
+                pCatagory: pcatagory.text,
+                pDesc: pdescription.text,
+                pImg: url,
+                pName: pname.text,
+                pPrice: pprice.text,
+                pQuantity: pquantity.text,
+                pSubcatagory: psubcatagory.text,
+              );
+              UploadProduct().uploadProducts(productsModal, url);
             }
           },
           child: const Text('Save'),

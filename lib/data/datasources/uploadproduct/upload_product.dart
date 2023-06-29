@@ -14,7 +14,7 @@ class UploadProduct {
       'p_name': productsModal.pName,
       'p_price': productsModal.pPrice,
       'p_quantity': productsModal.pQuantity,
-      'P_rating': productsModal.pRating,
+      'P_rating': '',
       'p_catagory': productsModal.pCatagory,
       'p_imgs': [],
       'p_rating': '0',
@@ -25,7 +25,6 @@ class UploadProduct {
     }).then((value) => {});
   }
 
-  // adding image to firebase storage
   Future<String> uploadImageToStorage(String childName, Uint8List file) async {
     // creating location to our firebase storage
 
