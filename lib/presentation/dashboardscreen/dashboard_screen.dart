@@ -1,5 +1,6 @@
 import 'package:ecommerce_admin/constants.dart';
 import 'package:ecommerce_admin/presentation/dashboardscreen/component/productdetail.dart';
+import 'package:ecommerce_admin/presentation/dashboardscreen/component/recent_files.dart';
 import 'package:flutter/material.dart';
 
 import 'component/header.dart';
@@ -15,7 +16,7 @@ class DashBoardScreen extends StatefulWidget {
 class _DashBoardScreenState extends State<DashBoardScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: SingleChildScrollView(
         padding: EdgeInsets.all(defaultPadding),
         child: Column(
@@ -31,10 +32,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                   child: Column(
                     children: [
                       MyFeilds(),
-                      SizedBox(
-                        height: defaultPadding,
-                      ),
-                      Container()
+                      SizedBox(height: defaultPadding),
+                      RecentFiles(),
                     ],
                   ),
                 ),
