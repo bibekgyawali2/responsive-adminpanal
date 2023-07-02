@@ -1,5 +1,8 @@
 import 'package:ecommerce_admin/constants.dart';
+import 'package:ecommerce_admin/controllers/MenuController.dart';
+import 'package:ecommerce_admin/responsive.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class Header extends StatelessWidget {
@@ -11,12 +14,21 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
-          "Dashboard",
-          style: Theme.of(context).textTheme.headline6,
-        ),
-        const Spacer(),
-        const Expanded(child: SearchBar()),
+        if (!Responsive.isDesktop(context))
+          IconButton(
+            onPressed: () {
+              context.read<MenuAppController>().controlMenu();
+            },
+            icon: const Icon(Icons.menu),
+          ),
+        if (!Responsive.isMobile(context))
+          Text(
+            "Dashboard",
+            style: Theme.of(context).textTheme.headline6,
+          ),
+        if (!Responsive.isMobile(context))
+          Spacer(flex: Responsive.isDesktop(context) ? 2 : 1),
+        Expanded(child: SearchBar()),
         const ProfileCard()
       ],
     );
