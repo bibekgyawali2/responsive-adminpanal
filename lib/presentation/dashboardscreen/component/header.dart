@@ -59,10 +59,11 @@ class ProfileCard extends StatelessWidget {
             'assets/images/profile_pic.png',
             height: 38,
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-            child: Text("Bibek Gyawali"),
-          ),
+          if (!Responsive.isMobile(context))
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: defaultPadding / 2),
+              child: Text("Bibek Gyawali"),
+            ),
           const Icon(Icons.keyboard_arrow_down),
         ],
       ),

@@ -1,9 +1,11 @@
 import 'package:ecommerce_admin/screens/main/main_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'constants.dart';
 import 'controllers/MenuController.dart';
+import 'cubits/dashboard_cubit/dashboard_cubit.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -29,13 +31,20 @@ class MyApp extends StatelessWidget {
             .apply(bodyColor: Colors.white),
         canvasColor: secondaryColor,
       ),
-      home: MultiProvider(
+      home: MultiBlocProvider(
         providers: [
-          ChangeNotifierProvider(
-            create: (context) => MenuAppController(),
+          BlocProvider<DashboardCubit>(
+            create: (context) => DashboardCubit(),
           ),
         ],
-        child: const MainScreen(),
+        child: MultiProvider(
+          providers: [
+            ChangeNotifierProvider(
+              create: (context) => MenuAppController(),
+            ),
+          ],
+          child: const MainScreen(),
+        ),
       ),
     );
   }

@@ -1,10 +1,11 @@
 import 'package:ecommerce_admin/controllers/MenuController.dart';
+import 'package:ecommerce_admin/cubits/dashboard_cubit/dashboard_cubit.dart';
 import 'package:ecommerce_admin/presentation/dashboardscreen/dashboard_screen.dart';
+import 'package:ecommerce_admin/presentation/productscreen/productscreen.dart';
 import 'package:ecommerce_admin/presentation/widgets/side_menu.dart';
 import 'package:ecommerce_admin/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
@@ -21,9 +22,16 @@ class MainScreen extends StatelessWidget {
               flex: 1,
               child: SideMenu(),
             ),
-          const Expanded(
+           Expanded(
             flex: 5,
-            child: DashBoardScreen(),
+            child:BlocBuilder<DashboardCubit,DashboardItem>(builder: (context,state){
+              if(state == DashboardItem.item_1){
+                return const DashBoardScreen();
+              }else {
+                return const ProductsListScreen();
+              }
+
+            },)
           ),
         ],
       ),

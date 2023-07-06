@@ -5,6 +5,8 @@ import 'package:ecommerce_admin/presentation/dashboardscreen/component/file_info
 import 'package:ecommerce_admin/responsive.dart';
 import 'package:flutter/material.dart';
 
+import 'all_product_button.dart';
+
 class MyFeilds extends StatelessWidget {
   const MyFeilds({
     super.key,
@@ -16,33 +18,7 @@ class MyFeilds extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "All Products",
-              style: Theme.of(context).textTheme.subtitle1,
-            ),
-            ElevatedButton.icon(
-              style: TextButton.styleFrom(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: defaultPadding * 1.5,
-                  vertical: defaultPadding,
-                ),
-              ),
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return const ShippingAddressDialog();
-                  },
-                );
-              },
-              icon: const Icon(Icons.add),
-              label: const Text('Add Product'),
-            ),
-          ],
-        ),
+        const AllProductButton(),
         const SizedBox(height: defaultPadding),
         Responsive(
           mobile: FileInfoCardGridView(

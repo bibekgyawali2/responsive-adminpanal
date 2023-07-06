@@ -1,4 +1,6 @@
+import 'package:ecommerce_admin/cubits/dashboard_cubit/dashboard_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SideMenu extends StatelessWidget {
@@ -8,7 +10,9 @@ class SideMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dashboardCubit = context.read<DashboardCubit>();
     return Drawer(
+      width: MediaQuery.of(context).size.width * 0.6,
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -16,34 +20,38 @@ class SideMenu extends StatelessWidget {
               child: Image.asset('assets/images/logo.png'),
             ),
             DrawerListTile(
-              press: () {},
+              press: () {
+                dashboardCubit.selectItem(DashboardItem.item_1);
+              },
               title: "Dashboard",
-              svgSrc: 'icons/menu_dashbord.svg',
+              svgSrc: 'assets/icons/menu_dashbord.svg',
             ),
             DrawerListTile(
-              press: () {},
+              press: () {
+                dashboardCubit.selectItem(DashboardItem.item_2);
+              },
               title: "Products",
-              svgSrc: 'icons/menu_dashbord.svg',
+              svgSrc: 'assets/icons/menu_dashbord.svg',
             ),
             DrawerListTile(
               press: () {},
               title: "Transactions",
-              svgSrc: 'icons/menu_doc.svg',
+              svgSrc: 'assets/icons/menu_doc.svg',
             ),
             DrawerListTile(
               press: () {},
               title: "Notifications",
-              svgSrc: 'icons/menu_notification.svg',
+              svgSrc: 'assets/icons/menu_notification.svg',
             ),
             DrawerListTile(
               press: () {},
               title: "Orders",
-              svgSrc: 'icons/menu_task.svg',
+              svgSrc: 'assets/icons/menu_task.svg',
             ),
             DrawerListTile(
               press: () {},
               title: "Carts",
-              svgSrc: 'icons/menu_store.svg',
+              svgSrc: 'assets/icons/menu_store.svg',
             ),
           ],
         ),
