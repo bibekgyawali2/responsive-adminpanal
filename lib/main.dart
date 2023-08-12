@@ -1,3 +1,4 @@
+import 'package:ecommerce_admin/cubits/fetch_product_cubit/fetch_product_cubit.dart';
 import 'package:ecommerce_admin/screens/main/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'constants.dart';
 import 'controllers/MenuController.dart';
 import 'cubits/dashboard_cubit/dashboard_cubit.dart';
+import 'data/datasources/fetchproducts/fetchproduct.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -36,6 +38,10 @@ class MyApp extends StatelessWidget {
           BlocProvider<DashboardCubit>(
             create: (context) => DashboardCubit(),
           ),
+          BlocProvider<FetchProductCubit>(
+            create: (context) =>
+                FetchProductCubit(FetchProducts())..fetchProducts(),
+          )
         ],
         child: MultiProvider(
           providers: [
