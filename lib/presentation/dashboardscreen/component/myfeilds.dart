@@ -1,6 +1,5 @@
 import 'package:ecommerce_admin/constants.dart';
 import 'package:ecommerce_admin/models/MyFiles.dart';
-import 'package:ecommerce_admin/presentation/dashboardscreen/component/dialog.dart';
 import 'package:ecommerce_admin/presentation/dashboardscreen/component/file_info_cards.dart';
 import 'package:ecommerce_admin/responsive.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +13,7 @@ class MyFeilds extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size _size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.of(context).size;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -22,12 +21,12 @@ class MyFeilds extends StatelessWidget {
         const SizedBox(height: defaultPadding),
         Responsive(
           mobile: FileInfoCardGridView(
-            crossAxisCount: _size.width < 650 ? 2 : 4,
-            childAspectRatio: _size.width < 650 ? 1.3 : 1,
+            crossAxisCount: size.width < 650 ? 2 : 4,
+            childAspectRatio: size.width < 650 ? 1.3 : 1,
           ),
-          tablet: FileInfoCardGridView(),
+          tablet: const FileInfoCardGridView(),
           desktop: FileInfoCardGridView(
-            childAspectRatio: _size.width < 1400 ? 1.1 : 1.4,
+            childAspectRatio: size.width < 1400 ? 1.1 : 1.4,
           ),
         )
       ],

@@ -10,7 +10,7 @@ class OrderCubit extends Cubit<OrderState> {
   final FetchOrder fetchOrder;
   OrderCubit(this.fetchOrder) : super(OrderInitial());
 
-  void fetchProducts() async {
+  void fetchOrders() async {
     try {
       emit(OrderLoading());
 

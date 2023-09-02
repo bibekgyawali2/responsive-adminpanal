@@ -15,12 +15,12 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: context.read<MenuAppController>().scaffoldKey,
-      drawer: SideMenu(),
+      drawer: const SideMenu(),
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (Responsive.isDesktop(context))
-            Expanded(
+            const Expanded(
               flex: 1,
               child: SideMenu(),
             ),

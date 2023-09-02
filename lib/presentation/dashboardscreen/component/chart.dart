@@ -37,7 +37,7 @@ List<PieChartSectionData> pieChartSelectionDatas = [
     radius: 25,
   ),
   PieChartSectionData(
-    color: Color.fromARGB(255, 19, 65, 103),
+    color: const Color.fromARGB(255, 19, 65, 103),
     value: 10,
     showTitle: false,
     radius: 25,

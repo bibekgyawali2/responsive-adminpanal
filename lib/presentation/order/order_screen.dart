@@ -1,5 +1,7 @@
 import 'package:ecommerce_admin/constants.dart';
+import 'package:ecommerce_admin/cubits/order_cubit/order_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({Key? key}) : super(key: key);
@@ -14,7 +16,7 @@ class _OrderScreenState extends State<OrderScreen> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -26,50 +28,70 @@ class _OrderScreenState extends State<OrderScreen> {
                 ),
               ),
               const SizedBox(height: defaultPadding),
-              Expanded(
-                flex: 1,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: DataTable(
-                    columnSpacing: 120,
-                    columns: [
-                      DataColumn(label: Text('Order ID')),
-                      DataColumn(label: Text('Customer')),
-                      DataColumn(label: Text('Total Amount')),
-                      DataColumn(label: Text('Status')),
-                      DataColumn(label: Text('Date')),
-                      DataColumn(label: Text('Actions')),
-                    ],
-                    rows: [
-                      DataRow(
-                        cells: [
-                          DataCell(Text('1')),
-                          DataCell(Text('John Doe')),
-                          DataCell(Text('\$100.00')),
-                          DataCell(Text('2022/2/2')),
-                          DataCell(Text('Pending')),
-                          DataCell(Row(
-                            children: [
-                              IconButton(
-                                icon: Icon(Icons.edit),
-                                onPressed: () {
-                                  // Handle edit action
-                                },
-                              ),
-                              IconButton(
-                                icon: Icon(Icons.delete),
-                                onPressed: () {
-                                  // Handle delete action
-                                },
-                              ),
+              BlocBuilder<OrderCubit, OrderState>(
+                builder: (context, state) {
+                  if (state is FetchOrderSuccess) {
+                    return Expanded(
+                      flex: 1,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            color: secondaryColor,
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                          child: DataTable(
+                            // columnSpacing: 120,
+                            columns: const [
+                              DataColumn(label: Text('Order ID')),
+                              DataColumn(label: Text('Customer ID')),
+                              DataColumn(label: Text('Total Amount')),
+                              DataColumn(label: Text('Status')),
+                              DataColumn(label: Text('Date')),
+                              DataColumn(label: Text('Actions')),
                             ],
-                          )),
-                        ],
+                            rows: state.productList.map((order) {
+                              return DataRow(
+                                cells: [
+                                  DataCell(Text(order.orderId)),
+                                  DataCell(Text(order.userId)),
+                                  DataCell(Text(
+                                      order.totalPrice.toStringAsFixed(2))),
+                                  DataCell(Text('pending')),
+                                  DataCell(Text(order.province)),
+                                  DataCell(
+                                    Row(
+                                      children: [
+                                        IconButton(
+                                          icon: Icon(Icons.edit),
+                                          onPressed: () {
+                                            // Handle edit action
+                                          },
+                                        ),
+                                        IconButton(
+                                          icon: Icon(Icons.delete),
+                                          onPressed: () {
+                                            // Handle delete action
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              );
+                            }).toList(),
+                          ),
+                        ),
                       ),
-                      // Add more data rows for other orders
-                    ],
-                  ),
-                ),
+                    );
+                  } else if (state is OrderLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return const Text("Error");
+                  }
+                },
               ),
             ],
           ),

@@ -24,11 +24,11 @@ class Header extends StatelessWidget {
         if (!Responsive.isMobile(context))
           Text(
             "Dashboard",
-            style: Theme.of(context).textTheme.headline6,
+            style: Theme.of(context).textTheme.titleLarge,
           ),
         if (!Responsive.isMobile(context))
           Spacer(flex: Responsive.isDesktop(context) ? 2 : 1),
-        Expanded(child: SearchBar()),
+        const Expanded(child: SearchBar()),
         const ProfileCard()
       ],
     );

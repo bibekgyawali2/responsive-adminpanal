@@ -33,16 +33,16 @@ class OrderModal {
         .toList();
 
     return OrderModal(
-      city: json['city'],
-      country: json['country'],
-      postalCode: json['postalCode'],
-      province: json['province'],
-      street: json['street'],
+      city: json['City'],
+      country: json['Country'],
+      postalCode: json['PostalCode'],
+      province: json['Province'],
+      street: json['Street'],
       orderId: json['orderId'],
-      otherDescription: json['otherDescription'],
+      otherDescription: json['otherDesCription'],
       phone: json['phone'],
       products: products,
-      userId: json['userId'],
+      userId: json['user_id'],
       totalPrice: json['totalPrice'].toDouble(),
     );
   }

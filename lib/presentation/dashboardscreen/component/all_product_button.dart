@@ -15,7 +15,7 @@ class AllProductButton extends StatelessWidget {
       children: [
         Text(
           "All Products",
-          style: Theme.of(context).textTheme.subtitle1,
+          style: Theme.of(context).textTheme.titleMedium,
         ),
         ElevatedButton.icon(
           style: TextButton.styleFrom(

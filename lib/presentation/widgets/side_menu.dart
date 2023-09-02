@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SideMenu extends StatelessWidget {
+  const SideMenu({super.key});
+
   @override
   Widget build(BuildContext context) {
     final dashboardCubit = context.read<DashboardCubit>();
@@ -58,7 +60,7 @@ class SideMenu extends StatelessWidget {
 }
 
 class DrawerListTile extends StatelessWidget {
-  const DrawerListTile({
+  const DrawerListTile({super.key, 
     required this.svgSrc,
     required this.press,
     required this.title,
