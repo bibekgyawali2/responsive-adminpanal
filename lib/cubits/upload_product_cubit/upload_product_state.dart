@@ -1,6 +1,5 @@
 part of 'upload_product_cubit.dart';
 
-@immutable
 abstract class UploadProductState {}
 
 class UploadProductInitial extends UploadProductState {}

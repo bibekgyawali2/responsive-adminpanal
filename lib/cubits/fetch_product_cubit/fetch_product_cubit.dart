@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:ecommerce_admin/data/datasources/fetchproducts/fetchproduct.dart';
-import 'package:meta/meta.dart';
 
 import '../../data/models/productmodel.dart';
 

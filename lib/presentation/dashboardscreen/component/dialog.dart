@@ -11,10 +11,10 @@ class ShippingAddressDialog extends StatefulWidget {
   const ShippingAddressDialog({Key, key}) : super(key: key);
 
   @override
-  _ShippingAddressDialogState createState() => _ShippingAddressDialogState();
+  ShippingAddressDialogState createState() => ShippingAddressDialogState();
 }
 
-class _ShippingAddressDialogState extends State<ShippingAddressDialog> {
+class ShippingAddressDialogState extends State<ShippingAddressDialog> {
   TextEditingController pname = TextEditingController();
   TextEditingController pprice = TextEditingController();
   TextEditingController pdescription = TextEditingController();

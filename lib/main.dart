@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'constants.dart';
-import 'controllers/MenuController.dart';
+import 'controllers/menu_controller.dart';
 import 'cubits/dashboard_cubit/dashboard_cubit.dart';
 import 'cubits/order_cubit/order_cubit.dart';
 import 'data/datasources/fetchproducts/fetchproduct.dart';

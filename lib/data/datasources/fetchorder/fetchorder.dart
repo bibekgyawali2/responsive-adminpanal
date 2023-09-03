@@ -14,7 +14,6 @@ class FetchOrder {
       }).toList();
       return orderList;
     } catch (e) {
-      print(e);
       rethrow;
     }
   }

@@ -1,10 +1,9 @@
 import 'package:ecommerce_admin/constants.dart';
-import 'package:ecommerce_admin/cubits/dashboard_cubit/dashboard_cubit.dart';
 import 'package:ecommerce_admin/presentation/dashboardscreen/component/productdetail.dart';
 import 'package:ecommerce_admin/presentation/dashboardscreen/component/recent_files.dart';
+import 'package:ecommerce_admin/presentation/order/component/order_table.dart';
 import 'package:ecommerce_admin/responsive.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'component/header.dart';
 import 'component/myfeilds.dart';
@@ -19,8 +18,6 @@ class DashBoardScreen extends StatefulWidget {
 class _DashBoardScreenState extends State<DashBoardScreen> {
   @override
   Widget build(BuildContext context) {
-    final dashboardCubit = context.read<DashboardCubit>();
-
     return SafeArea(
       child: SingleChildScrollView(
         padding: const EdgeInsets.all(defaultPadding),
@@ -35,10 +32,12 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 Expanded(
                   flex: 5,
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const MyFeilds(),
                       const SizedBox(height: defaultPadding),
-                      const RecentFiles(),
+                      const OrderTable(),
                       if (Responsive.isMobile(context))
                         const SizedBox(height: defaultPadding),
                       if (Responsive.isMobile(context)) const StorageDetails(),

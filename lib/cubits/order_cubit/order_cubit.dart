@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:ecommerce_admin/data/models/ordermodal.dart';
-import 'package:meta/meta.dart';
 
 import '../../data/datasources/fetchorder/fetchorder.dart';
 

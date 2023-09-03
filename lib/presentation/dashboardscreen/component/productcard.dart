@@ -5,8 +5,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../../../data/models/productmodel.dart';
 
 class ProductsCard extends StatefulWidget {
-  Product product;
-  ProductsCard({
+  final Product product;
+  const ProductsCard({
     super.key,
     required this.product,
   });

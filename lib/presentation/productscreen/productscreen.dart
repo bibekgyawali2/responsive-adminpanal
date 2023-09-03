@@ -35,9 +35,10 @@ class _ProductsListScreenState extends State<ProductsListScreen> {
                         physics: const NeverScrollableScrollPhysics(),
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 4,
+                          crossAxisCount: 5,
                           mainAxisSpacing: defaultPadding,
                           crossAxisSpacing: defaultPadding,
+                          childAspectRatio: 16 / 9,
                         ),
                         itemCount: state.productList.length,
                         itemBuilder: (context, index) {

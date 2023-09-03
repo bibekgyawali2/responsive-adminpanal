@@ -1,6 +1,5 @@
 part of 'fetch_product_cubit.dart';
 
-@immutable
 abstract class FetchProductState {}
 
 class FetchProductInitial extends FetchProductState {}
